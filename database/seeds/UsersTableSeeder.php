@@ -49,6 +49,12 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('12345678');
         $hash = md5(strtolower(trim($user->email)));
         $user->avatar = "http://www.gravatar.com/avatar/$hash?s=100";
+        // 初始化用户角色，将 1 号用户指派为『站长』
+        $user->assignRole('Founder');
         $user->save();
+
+        // 将 2 号用户指派为『管理员』
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
     }
 }
