@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if (app()->isLocal()) {
+            // 本地环境才加载这个扩展包
+            $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
+        }
     }
 
     /**
