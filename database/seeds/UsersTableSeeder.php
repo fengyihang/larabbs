@@ -46,6 +46,7 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = 'Grace';
         $user->email = 'fengyihang@gmail.com';
+        $user->password = bcrypt('12345678');
         $hash = md5(strtolower(trim($user->email)));
         $user->avatar = "http://www.gravatar.com/avatar/$hash?s=100";
         $user->save();
