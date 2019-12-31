@@ -6,7 +6,7 @@ use App\Models\Reply;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
-class ReplyQuery extends QueryBuilder
+class TopicQuery extends QueryBuilder
 {
     public function __construct()
     {
