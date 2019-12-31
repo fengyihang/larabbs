@@ -6,9 +6,37 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
 use App\Http\Resources\TopicResource;
+use Doctrine\DBAL\Query\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
+use App\Models\User;
 
 class TopicsController extends Controller
 {
+    public function index(Request $request, Topic $topic)
+    {
+        /*$topics = QueryBuilder::for(Topic::class)->get();
+            ->allowedIncludes('user', 'category')
+            ->allowedFilters([
+                'title',
+                AllowedFilter::exact('category_id'),
+                AllowedFilter::scope('withOrder')->default('recentReplied'),
+            ])
+            ->paginate();*/
+
+        $query = $topic->query();
+
+        if ($categoryId = $request->category_id) {
+            $query->where('category_id', $categoryId);
+        }
+
+        $topics = $query
+            ->with('user', 'category')
+            ->withOrder($request->order)
+            ->paginate();
+
+        return TopicResource::collection($topics);
+    }
+
     public function store(TopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
@@ -33,5 +61,32 @@ class TopicsController extends Controller
         $topic->delete();
 
         return response(null, 204);
+    }
+
+    public function userIndex(Request $request, User $user)
+    {
+       /* $query = $user->topics()->getQuery();
+
+        $topics = QueryBuilder::for($query)
+            ->allowedIncludes('user', 'category')
+            ->allowedFilters([
+                'title',
+                AllowedFilter::exact('category_id'),
+                AllowedFilter::scope('withOrder')->default('recentReplied'),
+            ])
+            ->paginate();*/
+
+        $query = $user->topics()->getQuery();
+
+        if ($categoryId = $request->category_id) {
+            $query->where('category_id', $categoryId);
+        }
+
+        $topics = $query
+            ->with('user', 'category')
+            ->withOrder($request->order)
+            ->paginate();
+
+        return TopicResource::collection($topics);
     }
 }
