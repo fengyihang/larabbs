@@ -89,4 +89,15 @@ class TopicsController extends Controller
 
         return TopicResource::collection($topics);
     }
+
+    public function show(Topic $topic)
+    {
+        /*$topic = QueryBuilder::for(Topic::class)
+            ->allowedIncludes('user', 'category')
+            ->findOrFail($topicId);
+        return new TopicResource($topic);
+        */
+
+        return new TopicResource($topic->load('user', 'category'));
+    }
 }
