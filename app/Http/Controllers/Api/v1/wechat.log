@@ -1,0 +1,48 @@
+[2020-01-01T08:04:27.706463+08:00] EasyWeChat.DEBUG: >>>>>>>>
+GET /sns/jscode2session?access_token=28_m-UAuUKtWX7HWzqeIKH6K8EMLsnzeQyMofk3AcVxGOaXmREuYsS9zHIVj6LvlXPeuagRcDpJ7rtdtdHBBDX0IEXLFSNkTRVL9xqig8Ovyg5Cpf-kd21vyrLiHNPh9d8KXKZvrSC5Ef0OHOXfRWNeAGAEJA&appid=wx5222c4b8c8916602&secret=be81bdeeabe1960a4e99ad08f35e187f&js_code=023JvDh21a8XFR15KOh211XEh21JvDhH&grant_type=authorization_code HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.5.1 curl/7.64.0 PHP/7.2.19
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/plain
+Date: Wed, 01 Jan 2020 00:03:28 GMT
+Content-Length: 79
+
+{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: bDaau7aLRa-CFufKA ]"}
+--------
+NULL  
+[2020-01-01T08:07:20.131784+08:00] EasyWeChat.DEBUG: >>>>>>>>
+GET /sns/jscode2session?access_token=28_m-UAuUKtWX7HWzqeIKH6K8EMLsnzeQyMofk3AcVxGOaXmREuYsS9zHIVj6LvlXPeuagRcDpJ7rtdtdHBBDX0IEXLFSNkTRVL9xqig8Ovyg5Cpf-kd21vyrLiHNPh9d8KXKZvrSC5Ef0OHOXfRWNeAGAEJA&appid=wx5222c4b8c8916602&secret=be81bdeeabe1960a4e99ad08f35e187f&js_code=023JvDh21a8XFR15KOh211XEh21JvDhH&grant_type=authorization_code HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.5.1 curl/7.64.0 PHP/7.2.19
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/plain
+Date: Wed, 01 Jan 2020 00:06:20 GMT
+Content-Length: 79
+
+{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: CDaaZRLnRa-YFgGwa ]"}
+--------
+NULL  
+[2020-01-01T08:08:45.537504+08:00] EasyWeChat.DEBUG: >>>>>>>>
+GET /sns/jscode2session?access_token=28_m-UAuUKtWX7HWzqeIKH6K8EMLsnzeQyMofk3AcVxGOaXmREuYsS9zHIVj6LvlXPeuagRcDpJ7rtdtdHBBDX0IEXLFSNkTRVL9xqig8Ovyg5Cpf-kd21vyrLiHNPh9d8KXKZvrSC5Ef0OHOXfRWNeAGAEJA&appid=wx5222c4b8c8916602&secret=be81bdeeabe1960a4e99ad08f35e187f&js_code=023JvDh21a8XFR15KOh211XEh21JvDhH&grant_type=authorization_code HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.5.1 curl/7.64.0 PHP/7.2.19
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/plain
+Date: Wed, 01 Jan 2020 00:07:46 GMT
+Content-Length: 78
+
+{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: dDaaY24ce-0ym.oA ]"}
+--------
+NULL  

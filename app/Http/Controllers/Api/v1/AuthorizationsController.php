@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use EasyWeChatComposer\EasyWeChat;
+use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use Laravel\Socialite\Facades\Socialite;
@@ -108,12 +108,25 @@ class AuthorizationsController extends Controller
         $code = $request->code;
 
         // 根据 code 获取微信 openid 和 session_key
-        $miniProgram = EasyWeChat::miniProgram();
+        $config = [
+            'app_id' => config('wechat.mini_program.default.app_id'),
+            'secret' => config('wechat.mini_program.default.secret'),
+
+            // 下面为可选项
+            // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
+            'response_type' => 'array',
+
+            'log' => [
+                'level' => 'debug',
+                'file' => __DIR__.'/wechat.log',
+            ],
+        ];
+        $miniProgram = Factory::miniProgram($config);
         $data = $miniProgram->auth->session($code);
 
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
         if (isset($data['errcode'])) {
-            return $this->response->errorUnauthorized('code 不正确');
+            return $this->errorResponse(403,'code 不正确');
         }
 
         // 找到 openid 对应的用户
@@ -125,7 +138,7 @@ class AuthorizationsController extends Controller
         if (!$user) {
             // 如果未提交用户名密码，403 错误提示
             if (!$request->username) {
-                return $this->response->errorForbidden('用户不存在');
+                return $this->errorResponse(403,'用户不存在');
             }
 
             $username = $request->username;
@@ -139,7 +152,7 @@ class AuthorizationsController extends Controller
 
             // 验证用户名和密码是否正确
             if (!Auth::guard('api')->once($credentials)) {
-                return $this->response->errorUnauthorized('用户名或密码错误');
+                return $this->errorResponse(403,'用户名或密码错误');
             }
 
             // 获取对应的用户
